@@ -1,0 +1,24 @@
+{
+  "name": "twitch-vipredeem",
+  "version": "1.0.0",
+  "description": "Auto VIP on channel redeem and expires",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "twitch"
+  ],
+  "author": "codedninja",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "moment": "^2.29.1",
+    "simple-oauth2": "^4.2.0",
+    "twitch": "^4.6.2",
+    "twitch-auth": "^4.6.3",
+    "twitch-chat-client": "^4.6.3",
+    "twitch-pubsub-client": "^4.6.2",
+    "yargs": "^17.0.1"
+  }
+}
