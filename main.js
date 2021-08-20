@@ -33,8 +33,19 @@ class Main {
     }
 
     async loadRedeems() {
+        if (!fs.existsSync("redeems.json")) {
+            await fs.writeFile("redeems.json", JSON.stringify(this.redeems), (err) => {
+                if (err) {
+                    // console.log(err)
+                } else {
+                    console.log("Created redeems.json")
+                }
+            });
+        };
+
         await fs.readFile("redeems.json", "utf8", (err, data) => {
             if (err) {
+                console.log("TEFAFFS")
                 return console.log(err)
             } else {
                 this.redeems = JSON.parse(data)
@@ -115,7 +126,9 @@ class Main {
         
         let pubSubClient = new PubSubClient();
 
-        await pubSubClient.registerUserListener(this.apiClient, this.settings.user.id);
+        await pubSubClient.registerUserListener(this.apiClient, this.settings.user.id).then((id) => {
+            console.log("Pubsub has been started.");
+        });
 
         this.listener = await pubSubClient.onRedemption(this.settings.user.id, (redeem) => {
             if (redeem.rewardId == this.settings.reward.id) {
@@ -160,11 +173,7 @@ class Main {
             }
         })
     }
-
-    test() {
-        console.log(this.redeems)
-    }
-
+    
     checkExpiredRedeems() {
         Object.keys(this.redeems).map((key, index) => {
             if (this.redeems[key].expires_at.isBefore(moment())) {

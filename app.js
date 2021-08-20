@@ -1,20 +1,11 @@
 const { setup } = require("./setup")
 const { Main } = require("./main")
-const yargs = require("yargs");
+const fs = require("fs");
 
-const argv = yargs
-    .option("setup", {
-        description: "Inital setup for settings.",
-        type: "boolean",
-    })
-    .help()
-    .alias("help", "h")
-    .argv;
-
-if (argv.setup) {
+console.log("Checking if settings file exists...");
+if(!fs.existsSync("settings.json")) {
     setup.start()
 } else {
     m = new Main()
     m.start()
 }
-

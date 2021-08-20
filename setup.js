@@ -4,6 +4,7 @@ const util = require('util');
 const moment = require('moment');
 const { default: axios } = require('axios');
 const fs = require('fs');
+const { Main } = require("./main")
 
 
 setup = {
@@ -149,6 +150,9 @@ setup = {
         this.rl.close()
 
         console.log("Settings have been saved, you can now run the bot.")
+
+        m = new Main()
+        m.start()
     }
 }
 
