@@ -23,7 +23,7 @@ setup = {
     ],
 
     start: function() {
-        console.log("You need a Client ID and Client Secret from https://dev.twitch.tv/")
+        console.log("You need a Client ID and Client Secret from https://dev.twitch.tv/");
 
         this.rl = readline.createInterface({
             input: process.stdin,
@@ -34,7 +34,7 @@ setup = {
     },
     
     requestClientID: function () {
-        this.rl.question("Twitch Client ID: ", (clientID) => {
+        this.rl.question("Twitch Client ID: \n", (clientID) => {
             this.clientID = clientID
 
             this.requestClientSecret()
@@ -42,7 +42,7 @@ setup = {
     },
 
     requestClientSecret: function () {
-        this.rl.question("Twitch Client Secret: ", (clientSecret) => {
+        this.rl.question("Twitch Client Secret: \n", (clientSecret) => {
             this.clientSecret = clientSecret
 
             this.generateOAuthURI()
@@ -58,7 +58,7 @@ setup = {
     },
 
     requestOAuthRedirectURI: function () {
-        this.rl.question("Paste Redirected URL Here: ", (redirected_url) => {
+        this.rl.question("Paste Redirected URL Here: \n", (redirected_url) => {
             code = new URL(redirected_url).searchParams.get("code");
 
             this.exchangeCode(code)
@@ -116,7 +116,7 @@ setup = {
             console.log((x+1)+": "+reward.title)
         }
 
-        this.rl.question("Enter numer of reward to auto VIP for: ", (choice) => {
+        this.rl.question("Enter numer of reward to auto VIP for: \n", (choice) => {
             this.reward = this.rewards[choice - 1]
             
             this.requestDuration()
@@ -124,7 +124,7 @@ setup = {
     },
 
     requestDuration: function () {
-        this.rl.question("How long should they have VIP for? (Seconds): ", (choice) => {
+        this.rl.question("How long should they have VIP for? (Seconds): \n", (choice) => {
             this.duration = choice
 
             this.saveSettings()
